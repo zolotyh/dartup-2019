@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Neucha';
+    font-style: normal;
+    font-weight: 400;
+    src: url(Neucha_400_normal.eot); /* http://fonts.gstatic.com/s/neucha/v11/q5uGsou0JOdh94bfuQlp.eot */
+    src: local('☺'),
+        url(Neucha_400_normal.eot?#iefix) format('embedded-opentype'), /* http://fonts.gstatic.com/s/neucha/v11/q5uGsou0JOdh94bfuQlp.eot */
+        url(Neucha_400_normal.woff2) format('woff2'), /* http://fonts.gstatic.com/s/neucha/v11/q5uGsou0JOdh94bfuQlt.woff2 */
+        url(Neucha_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/neucha/v11/q5uGsou0JOdh94bfuQlr.woff */
+        url(Neucha_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/neucha/v11/q5uGsou0JOdh94bfuQloKRZUgQ.ttf */
+        url(Neucha_400_normal.svg#Neucha_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=q5uGsou0JOdh94bfuQlq&skey=3220290e94c865ad&v=v11#Neucha */
+}
