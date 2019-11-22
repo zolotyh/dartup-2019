@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url(Oswald_400_normal.eot); /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiYQ.eot */
+    src: local('☺'),
+        url(Oswald_400_normal.eot?#iefix) format('embedded-opentype'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiYQ.eot */
+        url(Oswald_400_normal.woff2) format('woff2'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiZQ.woff2 */
+        url(Oswald_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiYw.woff */
+        url(Oswald_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiYCSShiA.ttf */
+        url(Oswald_400_normal.svg#Oswald_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUtiYg&skey=653237e53512d0de&v=v29#Oswald */
+}
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 300;
+    src: url(Oswald_300_normal.eot); /* {{embedded-opentype-gf-url}} */
+    src: local('☺'),
+        url(Oswald_300_normal.eot?#iefix) format('embedded-opentype'), /* {{embedded-opentype-gf-url}} */
+        url(Oswald_300_normal.woff2) format('woff2'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs169vsUtiZQ.woff2 */
+        url(Oswald_300_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs169vsUtiYw.woff */
+        url(Oswald_300_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs169vsUtiYCSShiA.ttf */
+        url(Oswald_300_normal.svg#Oswald_300_normal) format('svg'); /* {{svg-gf-url}} */
+}
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 600;
+    src: url(Oswald_600_normal.eot); /* {{embedded-opentype-gf-url}} */
+    src: local('☺'),
+        url(Oswald_600_normal.eot?#iefix) format('embedded-opentype'), /* {{embedded-opentype-gf-url}} */
+        url(Oswald_600_normal.woff2) format('woff2'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9osUtiZQ.woff2 */
+        url(Oswald_600_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9osUtiYw.woff */
+        url(Oswald_600_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9osUtiYCSShiA.ttf */
+        url(Oswald_600_normal.svg#Oswald_600_normal) format('svg'); /* {{svg-gf-url}} */
+}
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 700;
+    src: url(Oswald_700_normal.eot); /* {{embedded-opentype-gf-url}} */
+    src: local('☺'),
+        url(Oswald_700_normal.eot?#iefix) format('embedded-opentype'), /* {{embedded-opentype-gf-url}} */
+        url(Oswald_700_normal.woff2) format('woff2'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZosUtiZQ.woff2 */
+        url(Oswald_700_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZosUtiYw.woff */
+        url(Oswald_700_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/oswald/v29/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZosUtiYCSShiA.ttf */
+        url(Oswald_700_normal.svg#Oswald_700_normal) format('svg'); /* {{svg-gf-url}} */
+}
