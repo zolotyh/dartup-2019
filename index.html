@@ -29,7 +29,10 @@
         : 'css/print/paper.css';
       document.getElementsByTagName('head')[0].appendChild(link);
     </script>
-    <style></style>
+<style>mark > *, mark{
+    background-color: yellow!important;
+    color: #000!important;
+}</style>
   </head>
   <body>
     <div class="reveal">
@@ -41,29 +44,113 @@
           <p>Алексей Золотых</p>
         </section>
         <section data-background="img/types.jpg"></section>
-        <section>
-            1979
-        </section>
         <section data-background="img/stalker2.jpg"></section>
         <section
           data-background="img/stalker7.jpeg"
           data-state="img-center"
         ></section>
         <section>
-            <h3>
-                Разница в <strike>зоне</strike>  в контексте
-            </h3>
+          <h3>Разница в <strike>зоне</strike> в контексте</h3>
         </section>
         <section>
-          <h2>
-            Один процессор &mdash; много задач
-          </h2>
-          <img src="img/proc.jpeg" alt="" sizes="" srcset="">
+            Dart наследник JavaScript
+        </section>
+        <section>
+            <img src="img/netscape.png" alt="" sizes="" srcset="">
+        </section>
+        <section>
+            Многопоточность vs Однопоточность
+        </section>
+        <section>
+            <pre><code>
+var SharedMap = make(map[string]string)
+func changeMap(value string) {
+    SharedMap["test"] = value
+}
+func main() {
+    go changeMap("value1")
+    go changeMap("value2")
+    time.Sleep(time.Millisecond * 500)
+    fmt.Println(SharedMap["test"])
+}
+            </code></pre>
+        </section>
+        <section>
+            <pre><code data-trim data-noescape>
+public class StreamSum {
+    static final int SUM = IntStream.range(0, 100)
+      .parallel()
+      .reduce((n, m) -&gt; n + m).getAsInt();
+
+    public static void main(String[] args) {
+        System.out.println(SUM);
+    }
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>
+                Паттерн Event Loop
+            </h2>
+        </section>
+        <section>
+            <img src="img/loop.jpeg" alt="" sizes="" srcset="">
+        </section>
+        <section>
+        <pre><code>
+let SharedMap = {};
+const changeMap = (value) =&gt; {
+    return () =&gt; {
+        SharedMap["test"] = value
+    }
+}
+// 0 Timeout means we are making new Task in Queue for next cycle
+setTimeout(changeMap("value1"), 0);
+setTimeout(changeMap("value2"), 0);
+setTimeout(()=&gt;{
+   console.log(SharedMap["test"])
+}, 500);
+        </code></pre>
+        </section>
+        <section>
+            <ul>
+                <li>Windows applications</li>
+                <li>X Window System (Xlib event loop)</li>
+                <li>GLib event loop (GTK)</li>
+                <li>macOS Core Foundation run loops</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Node.js</h2>
+            <p>Это может быть еще и быстро</p>
         </section>
         <section>
           <h2>
             Все хорошо, но...
           </h2>
+        </section>
+
+        <section data-transition="slide none">
+            <pre><code data-trim data-noescape>
+var server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
+
+await for (var request in server) {
+    request.response
+            ..write('Hello, world')
+            ..close();
+}
+            </code></pre>
+        </section>
+        <section data-transition="none">
+            <pre><code data-noescape="" data-trim>
+var server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
+
+await for (var request in server) {
+    request.response
+            ..write(<mark>'Hello, world'</mark>)
+            ..close();
+}
+            </code></pre>
         </section>
         <section>
           <h2>
@@ -71,18 +158,197 @@
           </h2>
         </section>
         <section>
+            <pre><code data-trim data-noescape>
+class Context {
+    constructor(parentContext) {}
+    fork() {}
+    bind(fn) {}
+    run(fn) {}
+}
+            </code></pre>
+        </section>
+        <section>
+            <p>Конструктор</p>
+            <pre><code class="javascript" data-trim>
+    constructor(parentContext) {
+        let context;
+
+        if (parentContext) {
+            // Создаем копию
+            context = Object.create(parentContext)
+            context.parent = parentContext;
+        } else {
+            // Возвращаем текущий контекст
+            context = this;
+        }
+        return context;
+    }
+            </code></pre>
+        </section>
+        <section>
+            <p>Метод fork</p>
+            <pre><code class="javascript" data-trim data-noescape>
+    fork() {
+        // Возвращаем копию
+        return new Context(this);
+    }
+            </code></pre>
+        </section>
+        <section>
+            <p>Метод bind</p>
+            <pre><code class="javascript" data-trim data-noescape>
+    bind(fn) {
+        // Получаем текущий контекст
+        const context = this.fork();
+        // Возвращаем функцию в которой уже замкнут контекст
+        return () =&gt; {
+            return context.run(() =&gt; fn.apply(this, arguments), this, arguments);
+        }
+    }
+            </code></pre>
+        </section>
+        <section>
+            <p>Метод run</p>
+            <pre><code class="javascript" data-trim data-noescape>
+    run(fn) {
+        // Заменяем текущий контекст на наш
+        let oldContext = context;
+        context = this;
+        const result = fn.call() // Выполняем функцию в контексте
+        context = oldContext; // Возвращаем как было
+        return result; // Результат выполнения
+    }
+            </code></pre>
+        </section>
+        <section>
+            <pre><code data-trim data-noescape class="javascript">
+context = new Context();
+
+var bkp = window.setTimeout; // Подменяем setTimeout
+
+context.setTimeout = (callback, time) =&gt; {
+	callback = context.bind(callback);
+	return bkp.call(
+        window,
+        callback.bind(context), time
+    );
+};
+
+window.setTimeout = function (){
+	return context.setTimeout.apply(this, arguments);
+};
+            </code></pre>
+        </section>
+        <section data-transition="slide none">
+            <pre><code class="javascript" data-trim data-noescape>
+context.fork({}).run(() =&gt; {
+
+	context.message = 'Привет!';
+	setTimeout(() =&gt; {
+	  console.log(context.message);
+	}, 0);
+
+});
+
+console.log(context.message);
+            </code></pre>
+        </section>
+        <section data-transition="none">
+            <pre><code class="javascript" data-trim data-noescape>
+<span style="background: red; display: block">context.fork({}).run(() =&gt; {
+
+        context.message = 'Привет!';
+	setTimeout(() =&gt; {
+	  console.log(context.message);
+	}, 0);
+
+});
+
+console.log(context.message);</span>
+            </code></pre>
+        </section>
+        <section data-transition="none">
+            <pre><code class="javascript" data-trim data-noescape>
+<span style="background: red; display: block">context.fork({}).run(() =&gt; {
+    <span style="background: blue; display: inline-block;">
+    context.message = 'Привет!';
+    setTimeout(() =&gt; {
+	  console.log(context.message);
+    }, 0);
+    </span>
+});
+
+console.log(context.message);</span>
+            </code></pre>
+        </section>
+        <section>
           <h2>
             Возможности
           </h2>
         </section>
         <section>
+            Отправлять ошибки
+        </section>
+        <section>
+            <pre><code>
+runZoned&lt;Future&lt;void&gt;&gt;(() async {
+  runApp(CrashyApp());
+}, onError: (error, stackTrace) {
+  // Whenever an error occurs, call the `_reportError` function. This sends
+  // Dart errors to the dev console or Sentry depending on the environment.
+  _reportError(error, stackTrace);
+});
+            </code></pre>
+        </section>
+        <section>
+            <pre><code>
+Future&lt;void&gt; _reportError(dynamic error, dynamic stackTrace) async {
+  // Print the exception to the console.
+  print('Caught error: $error');
+  if (isInDebugMode) {
+    // Print the full stacktrace in debug mode.
+    print(stackTrace);
+    return;
+  } else {
+    // Send the Exception and Stacktrace to Sentry in Production mode.
+    _sentry.captureException(
+      exception: error,
+      stackTrace: stackTrace,
+    );
+  }
+}
+            </code></pre>
+        </section>
+        <section>
+            DI
+        </section>
+        <section>
+            <pre><code class="dart" data-trim data-noescape>
+Zone.current[MyClass] = new MyClassImpl()
+Zone.current[MyClass]
+            </code></pre>
+        </section>
+        <section>
+            Tests
+        </section>
+        <section>
+            <pre><code>
+void main() {
+  test("Future.timeout() throws an error once the timeout is up", () {
+    fakeAsync((async) {
+      expect(new Completer().future.timeout(new Duration(seconds: 5)),
+          throwsA(new isInstanceOf<TimeoutException>()));
+      async.elapse(new Duration(seconds: 5));
+    });
+  });
+}
+            </code></pre>
+        </section>
+        <section>
           <h2>
-            Зачем?
+            Выводы?
           </h2>
         </section>
-        <!-- Передаем контекст -->
-        <!-- ServiceLocator -->
-        <!-- Размечаем зоны отвественности -->
       </div>
     </div>
 
