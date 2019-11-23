@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+      throw 'test';
       print(12312312312);
     setState(() {
       // This call to setState tells the Flutter framework that something has
